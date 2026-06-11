@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ООО «Наркология» — Нефтекамск</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0D2340;
+    --blue:   #1A5276;
+    --accent: #27AE60;
+    --light:  #EBF5FB;
+    --white:  #FFFFFF;
+    --gray:   #7F8C8D;
+    --text:   #1C2833;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+  }
+  .nav-logo {
+    color: var(--white);
+    font-weight: 700; font-size: 1.1rem;
+    letter-spacing: .04em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  nav a.nav-link {
+    color: rgba(255,255,255,.7);
+    text-decoration: none; font-size: .85rem;
+    margin-left: 28px;
+    transition: color .2s;
+  }
+  nav a.nav-link:hover { color: var(--white); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1A6E4A 100%);
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -120px; right: -120px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: rgba(39,174,96,.08);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.04);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 740px;
+    position: relative; z-index: 1;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent);
+    color: var(--white);
+    font-size: .8rem; font-weight: 600;
+    padding: 6px 14px; border-radius: 20px;
+    margin-bottom: 24px;
+    letter-spacing: .06em; text-transform: uppercase;
+  }
+  .badge svg { width: 14px; height: 14px; fill: currentColor; }
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero-sub {
+    color: rgba(255,255,255,.75);
+    font-size: 1.1rem;
+    max-width: 520px;
+    margin-bottom: 40px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600; font-size: .95rem;
+    transition: background .2s, transform .15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #1e8449; transform: translateY(-1px); }
+  .btn-ghost {
+    border: 1.5px solid rgba(255,255,255,.4);
+    color: var(--white);
+    padding: 13px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500; font-size: .95rem;
+    transition: border-color .2s, background .2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,.9); background: rgba(255,255,255,.07); }
+
+  .hero-stats {
+    display: flex; gap: 40px; flex-wrap: wrap;
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,.12);
+  }
+  .stat-num {
+    font-size: 2.4rem; font-weight: 900; color: var(--white);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label {
+    font-size: .8rem; color: rgba(255,255,255,.55);
+    margin-top: 4px; text-transform: uppercase; letter-spacing: .05em;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  section { padding: 80px 5%; }
+  .section-tag {
+    display: inline-block;
+    font-size: .75rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+    font-weight: 800; color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-intro {
+    color: var(--gray);
+    font-size: 1rem; max-width: 540px;
+    margin-bottom: 48px;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--light); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,.1); }
+  .card-icon {
+    width: 48px; height: 48px;
+    background: var(--light);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+  .card h3 {
+    font-size: 1rem; font-weight: 700;
+    color: var(--navy); margin-bottom: 8px;
+  }
+  .card p { font-size: .88rem; color: var(--gray); }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: center;
+  }
+  @media (max-width: 700px) { .about-inner { grid-template-columns: 1fr; gap: 36px; } }
+  .about-text p { color: var(--gray); margin-bottom: 16px; font-size: .97rem; }
+  .highlight-box {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 14px;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .highlight-box::after {
+    content: '40+';
+    position: absolute;
+    right: -10px; bottom: -20px;
+    font-size: 8rem; font-weight: 900;
+    opacity: .07; color: var(--white);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .highlight-box h3 {
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .highlight-box p { font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.7; }
+  .cert-line {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 20px; padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,.12);
+    font-size: .82rem; color: rgba(255,255,255,.6);
+  }
+  .cert-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  #contact .section-tag { color: var(--accent); }
+  #contact h2 { color: var(--white); }
+  #contact .section-intro { color: rgba(255,255,255,.55); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .contact-card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .contact-card .c-label {
+    font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 10px;
+  }
+  .contact-card .c-value {
+    color: var(--white);
+    font-size: 1rem; font-weight: 600;
+    line-height: 1.6;
+  }
+  .contact-card .c-value a {
+    color: var(--white); text-decoration: none;
+    display: block;
+    transition: color .15s;
+  }
+  .contact-card .c-value a:hover { color: var(--accent); }
+  .cta-strip {
+    margin-top: 48px;
+    background: var(--accent);
+    border-radius: 14px;
+    padding: 36px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .cta-strip p { color: var(--white); font-size: 1.1rem; font-weight: 600; max-width: 460px; }
+  .cta-strip p span { display: block; font-size: .85rem; font-weight: 400; opacity: .85; margin-top: 4px; }
+  .btn-white {
+    background: var(--white); color: var(--accent);
+    padding: 13px 28px; border-radius: 6px;
+    font-weight: 700; font-size: .95rem;
+    text-decoration: none; white-space: nowrap;
+    transition: opacity .2s;
+  }
+  .btn-white:hover { opacity: .88; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0A1A2E;
+    padding: 28px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  footer p { color: rgba(255,255,255,.3); font-size: .78rem; }
+  footer .f-logo { color: var(--accent); font-weight: 700; font-size: .9rem; }
+
+  @media (max-width: 600px) {
+    .hero-stats { gap: 24px; }
+    .cta-strip { flex-direction: column; align-items: flex-start; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>Нарко</span>логия</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#services">Услуги</a>
+    <a class="nav-link" href="#about">О клинике</a>
+    <a class="nav-link" href="#contact">Контакты</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="badge">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V18h-2v-1.07A7 7 0 0 1 5 10h2a5 5 0 0 0 10 0h2a7 7 0 0 1-6 6.93z"/></svg>
+      Официальная клиника · ООО «Наркология»
+    </div>
+    <h1>Лечение зависимостей<br>в <em>Нефтекамске</em></h1>
+    <p class="hero-sub">
+      Анонимная наркологическая помощь. Приём ведёт заслуженный врач РБ,
+      психиатр-нарколог высшей категории.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:+78917412262" class="btn-primary">Позвонить</a>
+      <a href="#services" class="btn-ghost">Наши услуги</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">40<span>+</span></div>
+        <div class="stat-label">лет опыта</div>
+      </div>
+      <div>
+        <div class="stat-num">3<span> тел.</span></div>
+        <div class="stat-label">доступны 24/7</div>
+      </div>
+      <div>
+        <div class="stat-num"><span>100%</span></div>
+        <div class="stat-label">анонимно</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-tag">Что мы лечим</div>
+  <h2>Методы и услуги</h2>
+  <p class="section-intro">Комплексный подход к лечению алкогольной и наркотической зависимости.</p>
+  <div class="services-grid">
+    <div class="card">
+      <div class="card-icon">🧠</div>
+      <h3>Гипноз (метод Довженко)</h3>
+      <p>Авторская методика суггестивной терапии, зарекомендовавшая себя десятилетиями практики.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Лазерное кодирование</h3>
+      <p>Физиотерапевтическое воздействие на биологически активные точки для снятия тяги.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💊</div>
+      <h3>Вшивание ампулы</h3>
+      <p>Медикаментозное пролонгированное блокирование — надёжная защита от срыва.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤝</div>
+      <h3>Поддерживающая психотерапия</h3>
+      <p>Индивидуальные сессии для закрепления результата и работы с первопричинами.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏥</div>
+      <h3>Вывод из запоя</h3>
+      <p>Срочная помощь при алкогольном отравлении. Выезд на дом и амбулаторно.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🩺</div>
+      <h3>Процедурный кабинет</h3>
+      <p>Детоксикация, капельницы, медикаментозная поддержка на каждом этапе лечения.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <div class="section-tag">О клинике</div>
+      <h2>Доверие, опыт и конфиденциальность</h2>
+      <p>ООО «Наркология» — частная клиника амбулаторно-поликлинической помощи в Нефтекамске. Мы оказываем доврачебную и специализированную медицинскую помощь при зависимостях различного характера.</p>
+      <p>Все обращения строго анонимны. Наша задача — вернуть человека к здоровой жизни с минимальным стрессом и максимальной поддержкой.</p>
+      <p>Расположены по адресу: <strong>г. Нефтекамск, ул. Ленина, 41</strong> (452683, Республика Башкортостан).</p>
+    </div>
+    <div class="highlight-box">
+      <h3>Заслуженный врач РБ</h3>
+      <p>Приём ведёт психиатр-нарколог высшей квалификационной категории. Более 40 лет специализированной практики в области лечения химической зависимости.</p>
+      <div class="cert-line">
+        <div class="cert-dot"></div>
+        Высшая квалификационная категория
+      </div>
+      <div class="cert-line">
+        <div class="cert-dot"></div>
+        Заслуженный врач Республики Башкортостан
+      </div>
+      <div class="cert-line">
+        <div class="cert-dot"></div>
+        Амбулаторно-поликлинический приём
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-tag">Запись</div>
+  <h2>Свяжитесь с нами</h2>
+  <p class="section-intro">Анонимно. Без осуждения. Первый звонок ни к чему не обязывает.</p>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="c-label">Телефоны для записи</div>
+      <div class="c-value">
+        <a href="tel:+73478333075">8 (347) 833-30-75</a>
+        <a href="tel:+79174122626">8-917-412-26-26</a>
+        <a href="tel:+79033561974">8-903-356-19-74</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="c-label">Адрес</div>
+      <div class="c-value">
+        Республика Башкортостан<br>
+        г. Нефтекамск,<br>
+        ул. Ленина, 41<br>
+        <small style="color:rgba(255,255,255,.4);font-size:.8rem;">452683</small>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="c-label">Формат помощи</div>
+      <div class="c-value" style="font-weight:400;font-size:.9rem;line-height:1.8;">
+        Доврачебная медицинская помощь<br>
+        Амбулаторно-поликлинический приём<br>
+        Анонимное обращение
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">
+    <p>
+      Не откладывайте — позвоните прямо сейчас
+      <span>Специалист ответит на все вопросы и назначит удобное время</span>
+    </p>
+    <a href="tel:+79174122626" class="btn-white">8-917-412-26-26</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="f-logo">ООО «Наркология»</span>
+  <p>г. Нефтекамск, ул. Ленина, 41 · Амбулаторно-поликлиническая помощь · Анонимно</p>
+  <p>© 2026</p>
+</footer>
+
+</body>
+</html>
